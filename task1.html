@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous"> 
+    <link type="text/css" rel="stylesheet" href="./orcss.css"/>
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js">
+    <title>TASK 1 - LANDING PAGE </title>
+</head>
+<style>
+    body.lb-disable-scrolling {
+        overflow: hidden;
+      }
+      
+      .lightboxOverlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        background-color: black;
+        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+        opacity: 0.8;
+        display: none;
+      }
+      
+      .lightbox {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        z-index: 10000;
+        text-align: center;
+        line-height: 0;
+        font-weight: normal;
+        outline: none;
+      }
+      
+      .lightbox .lb-image {
+        display: block;
+        height: auto;
+        max-width: inherit;
+        max-height: none;
+        border-radius: 3px;
+      
+        /* Image border */
+        border: 4px solid white;
+      }
+      
+      .lightbox a img {
+        border: none;
+      }
+      
+      .lb-outerContainer {
+        position: relative;
+        *zoom: 1;
+        width: 250px;
+        height: 250px;
+        margin: 0 auto;
+        border-radius: 4px;
+      
+        
+        background-color: white;
+      }
+      
+      .lb-outerContainer:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+      
+      .lb-loader {
+        position: absolute;
+        top: 43%;
+        left: 0;
+        height: 25%;
+        width: 100%;
+        text-align: center;
+        line-height: 0;
+      }
+      
+      .lb-cancel {
+        display: block;
+        width: 32px;
+        height: 32px;
+        margin: 0 auto;
+        background: url(../images/loading.gif) no-repeat;
+      }
+      
+      .lb-nav {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 10;
+      }
+      
+      .lb-container > .nav {
+        left: 0;
+      }
+      
+      .lb-nav a {
+        outline: none;
+        background-image: url('data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==');
+      }
+      
+      .lb-prev, .lb-next {
+        height: 100%;
+        cursor: pointer;
+        display: block;
+      }
+      
+      .lb-nav a.lb-prev {
+        width: 34%;
+        left: 0;
+        float: left;
+        background: url(../images/prev.png) left 48% no-repeat;
+        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+        opacity: 0;
+        -webkit-transition: opacity 0.6s;
+        -moz-transition: opacity 0.6s;
+        -o-transition: opacity 0.6s;
+        transition: opacity 0.6s;
+      }
+      
+      .lb-nav a.lb-prev:hover {
+        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+        opacity: 1;
+      }
+      
+      .lb-nav a.lb-next {
+        width: 64%;
+        right: 0;
+        float: right;
+        background: url(../images/next.png) right 48% no-repeat;
+        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+        opacity: 0;
+        -webkit-transition: opacity 0.6s;
+        -moz-transition: opacity 0.6s;
+        -o-transition: opacity 0.6s;
+        transition: opacity 0.6s;
+      }
+      
+      .lb-nav a.lb-next:hover {
+        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+        opacity: 1;
+      }
+      
+      .lb-dataContainer {
+        margin: 0 auto;
+        padding-top: 5px;
+        *zoom: 1;
+        width: 100%;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
+      
+      .lb-dataContainer:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+      
+      .lb-data {
+        padding: 0 4px;
+        color: #ccc;
+      }
+      
+      .lb-data .lb-details {
+        width: 85%;
+        float: left;
+        text-align: left;
+        line-height: 1.1em;
+      }
+      
+      .lb-data .lb-caption {
+        font-size: 13px;
+        font-weight: bold;
+        line-height: 1em;
+      }
+      
+      .lb-data .lb-caption a {
+        color: #4ae;
+      }
+      
+      .lb-data .lb-number {
+        display: block;
+        clear: left;
+        padding-bottom: 1em;
+        font-size: 12px;
+        color: #999999;
+      }
+      
+      .lb-data .lb-close {
+        display: block;
+        float: right;
+        width: 30px;
+        height: 30px;
+        background: url(../images/close.png) top right no-repeat;
+        text-align: right;
+        outline: none;
+        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+        opacity: 0.7;
+        -webkit-transition: opacity 0.2s;
+        -moz-transition: opacity 0.2s;
+        -o-transition: opacity 0.2s;
+        transition: opacity 0.2s;
+      }
+      
+      .lb-data .lb-close:hover {
+        cursor: pointer;
+        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+        opacity: 1;
+      }
+</style>
+<body>
+    <div class="container">
+    <header id="main-header">
+        <div class="row no-gutters">
+            <div class="col-lg-4 col-md-5">
+                <img height="366px" width="400px" src="photo.jpg"/>
+                
+            </div>
+            <div class="col-lg-8 col-md-7">
+                <div class="bg-dark text-white">
+                    <div class="p-4 d-flex flex-row justify-content-between align-items-center">
+                        <h1 class="display-4">KANIK MAKHIJA</h1>
+                        <div >
+                            <a class="text-white" href="https://www.facebook.com">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                        </div>
+                        <div >
+                            <a class="text-white" href="https://www.twitter.com">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                        <div >
+                            <a class="text-white" href="https://www.instagram.com">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                        <div >
+                            <a class="text-white" href="https://www.github.com">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-5" .darkbg>
+                        <h3>Full Stack Devloper</h3>
+                    </div>
+                    <div>
+                        <div class="d-flex flex-row align-items-stretch text-center ">
+                            <div class="bg-danger resume-item p-4 text-white">
+                                <i class="fas fa-home fa-2x"></i>
+                                <span class="d-none d-md-block">Home</span>
+                            </div>
+                            <div class="bg-primary resume-item p-4 text-white">
+                                <i class="fas fa-graduation-cap fa-2x"></i>
+                                <span class="d-none d-md-block">Resume</span>
+                            </div>
+                            <div class="bg-warning resume-item p-4 text-white">
+                                <i class="fas fa-folder fa-2x"></i>
+                                <span class="d-none d-md-block">Web</span>
+                            </div>
+                            <div class="bg-success resume-item p-4 text-white">
+                                <i class="fas fa-envelope fa-2x"></i>
+                                <span class="d-none d-md-block">Contact</span>
+                            </div>
+
+                        </div>
+                    </div>
+  
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <div id="home" class="collapse show">
+        <div class="card bg-danger text-white">
+            <div class="card-body">
+                <h1>Home </h1>
+                <p class="lead">
+                    Welcome to my portfolio!
+
+I'm Kanik, a budding web developer. I'm passionate about creating and developing new things.
+
+I created this portfolio to showcase my skills and experience, and to connect with potential clients and collaborators. I'm always looking for new challenges and opportunities, so please don't hesitate to reach out if you have any questions or would like to work together (all my social handles are attached above).
+
+Let's create something amazing!
+                </p>
+            </div>
+            <div class="card bg-danger">
+                <div class="card-body">
+                    <h2>SKILLS</h2>
+                    <h4 class="card-title">HTML</h4>
+                    <div class="progress" style="height: 10px;">
+                        <div class="progress-bar bg-success" style="width: 99%;">99%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card bg-danger">
+                <div class="card-body">
+                    <h4 class="card-title">PHP</h4>
+                    <div class="progress" style="height: 10px;">
+                        <div class="progress-bar bg-success" style="width: 40%;">40%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card bg-danger">
+                <div class="card-body">
+                    <h4 class="card-title">JAVA</h4>
+                    <div class="progress" style="height: 10px;">
+                        <div class="progress-bar bg-success" style="width: 35%;">35%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card bg-danger">
+                <div class="card-body">
+                    <h4 class="card-title">PYTHON</h4>
+                    <div class="progress" style="height: 10px;">
+                        <div class="progress-bar bg-success" style="width: 50%;">50%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="resume" >
+        <div class="card bg-primary text-white">
+            <div>
+                <div class="card-body">
+                    <h1>Resume</h1>
+                    <p class="card-text">
+                        Highly skilled and motivated web developer with a strong background in marketing and business analytics. Proficient in social media marketing and equipped with a BTech degree in Artificial Intelligence and Data Science from the prestigious Vivekananda Institute of Professional Studies. With a passion for utilizing technology to drive business growth, I strive to create innovative and impactful solutions for clients. Bringing a unique blend of technical expertise and marketing savvy, I am committed to delivering results and exceeding expectations. Looking for opportunities to collaborate and contribute my skills to drive success.
+                    </p>
+                </div>
+
+            </div>
+            <h4>Previous comp</h4>
+            <div class="row">
+                <div class="col">
+                    <div class="card text-dark">
+                        <div class="card-header">
+                            <h4>Lead & Sales</h4>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Business Development</h4>
+                            <p class="card-text">Getting interesting leads for the website</p>
+                            <br>
+                            <p class="card-text">Built new and improvised strategies to promote.</p>
+                            <br>
+                            <p class="card-text">Finding customers who show interest</p>
+                        </div>
+                        <div class="card-footer">
+                            <h4>Contact 001-00525</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card text-dark">
+                        <div class="card-header">
+                            <h4>Buddha Dharma Education </h4>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Role:Social media marketing</h4>
+                            <p class="card-text">Built new and improvised strategies to promote.</p>
+                            <br>
+                            <p class="card-text">Managed their social media accounts</p>
+                        </div>
+                        <div class="card-footer">
+                            <h4>Contact 001-00525</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card text-dark">
+                        <div class="card-header">
+                            <h4>WEGATECH</h4>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Role:Data Entry</h4>
+                            <p class="card-text">maintained and calculated invoice of the company</p>
+                            <p class="card-text">Built new and improvised strategies to promote.</p>
+                            <p class="card-text">mainted all the expenses and charts of the company</p>
+                        </div>
+                        <div class="card-footer">
+                            <h4>Contact 001-00525</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card text-dark">
+                        <div class="card-header">
+                            <h4>Equilibrium - Mind And Yoga</h4>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Role:Social media marketing</h4>
+                            <p class="card-text">Built improvised strategies to promote.</p>
+                            <p class="card-text">Creating designs on Canva for social media engagement.</p>
+                        </div>
+                        <div class="card-footer">
+                            <h4>Contact 001-00525</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card text-dark">
+                        <div class="card-header">
+                            <h4>Octanet</h4>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Role:web developer </h4>
+                            <p class="card-text">created a landing page using html & css </p>
+                            
+                            <p class="card-text">Developing major projects using html & css </p>
+                            <br>
+                            <p class="card-text">created a task list using html & css</p>
+                        </div>
+                        <div class="card-footer">
+                            <h4>Contact 001-00525</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div id="Web" >
+        <div class="card bg-warning text-white" >
+            <div>
+                <div class="card-body">
+                    <h1>Web</h1>
+                    <p class="card-text">
+                       Some of our sample projects are as follows.
+                       (sample photos****)
+                    </p>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-md-3">
+                        <a href="https://unsplash.it/1200/768.jpg?img-123">
+                            <img src="https://unsplash.it/1200/768.jpg?img-123" class="img-fluid">
+                        </a>
+                    </div>
+                    <div class="col-md-3">    
+                        <a href="https://unsplash.it/1200/768.jpg?img-124">
+                            <img src="https://unsplash.it/1200/768.jpg?img-124" class="img-fluid">
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="https://unsplash.it/1200/768.jpg?img-125">
+                            <img src="https://unsplash.it/1200/768.jpg?img-125" class="img-fluid">
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="https://unsplash.it/1200/768.jpg?img-126">
+                            <img src="https://unsplash.it/1200/768.jpg?img-126" class="img-fluid">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div id="contact" >
+        <div class="card bg-success text-white">
+            <div>
+                <div class="card-body">
+                    <h1>Contact </h1>
+                    <p class="card-text">
+                        Let's create something amazing!
+                        <P>CONTACT US NOW ON THE ABOVE GIVEN SOCIAL HANDLES !!!!!</P>
+                        
+                    </p>
+                </div>
+
+            </div>
+        </div>        
+    </div>
+
+    <footer id="main-footer" class="bg-dark px-5 py-2">
+        <div class="col-md-6">
+            <button class="btn btn-outline-primary">
+                Download resume
+            </button>
+        </div>
+    </footer>
+
+    </div>    
+</body>
+
+</html>
